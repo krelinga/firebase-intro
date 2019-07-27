@@ -1,3 +1,13 @@
+function googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
     // // The Firebase SDK is initialized and available here!
@@ -17,4 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error(e);
       document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
+
+    document.querySelector('button').addEventListener('click', googleLogin)
 });
