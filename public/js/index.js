@@ -2,10 +2,6 @@ function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithPopup(provider)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-        })
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,5 +24,22 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
 
-    document.querySelector('button').addEventListener('click', googleLogin)
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        console.log('signed in as ' + user.displayName)
+        document.getElementById('log_in').style.visibility = 'hidden'
+        document.getElementById('log_out').style.visibility = 'visible'
+      } else {
+        // User is signed out.
+        console.log('user signed out')
+        document.getElementById('log_out').style.visibility = 'hidden'
+        document.getElementById('log_in').style.visibility = 'visible'
+      }
+    });
+
+    document.getElementById('log_in').addEventListener('click', googleLogin)
+    document.getElementById('log_out').addEventListener('click', () => {
+        firebase.auth().signOut()
+    })
 });
