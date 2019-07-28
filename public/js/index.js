@@ -1,3 +1,17 @@
+function addDummyEntryToFirestore() {
+    const db = firebase.firestore()
+
+    db.collection("test").add({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+    }).then(docRef => {
+        console.log("put docref ", docRef.id)
+    }).catch(error => {
+        console.error("error: ", error)
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
     // // The Firebase SDK is initialized and available here!
@@ -24,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('signed in as ' + user.displayName)
         document.getElementById('log_in').style.visibility = 'hidden'
         document.getElementById('log_out').style.visibility = 'visible'
+
+        addDummyEntryToFirestore()
       } else {
         // User is signed out.
         console.log('user signed out')
