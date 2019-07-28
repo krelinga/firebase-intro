@@ -21,10 +21,33 @@
 
         <script src="/js/index.js"></script>
         <link rel="stylesheet" href="/css/index.css">
+        <script id="dog_table_template" type="text/x-handlebars-template">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Kind</th>
+                    <th>Hungry</th>
+                </tr>
+                {{#each dogs}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{kind}}</td>
+                    <td>
+                        {{#if hungry}}
+                        Yes!
+                        {{else}}
+                        Not Yet!
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </script>
     </head>
     <body>
         <p id="load">Firebase SDK Loading&hellip;</p>
         <button id="log_in">Login With Google</button>
         <button id="log_out">Log Out</button>
+        <div id="dog_area"></div>
     </body>
 </html>

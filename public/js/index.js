@@ -39,4 +39,26 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('log_out').addEventListener('click', () => {
         firebase.auth().signOut()
     })
+
+    // dog template experiment.
+    dog_template = Handlebars.compile(document.getElementById('dog_table_template').innerHTML)
+    document.getElementById('dog_area').innerHTML = dog_template({
+        dogs: [
+            {
+                name: 'Fido',
+                kind: 'friendly',
+                hungry: true
+            },
+            {
+                name: 'Mystery',
+                kind: 'Suzy\'s Favorite!',
+                hungry: false
+            },
+            {
+                name: 'Bismarck',
+                kind: 'former german diplomat',
+                hungry: true
+            }
+        ]
+    })
 });
