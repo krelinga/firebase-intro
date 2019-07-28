@@ -1,4 +1,6 @@
 function addDummyEntryToFirestore() {
+    // Looks like there's no good way to stand up a local offline firestore instance for testing yet :-( .
+    // https://stackoverflow.com/questions/55673787/local-offline-development-with-firestore .
     const db = firebase.firestore()
 
     db.collection("test").add({
