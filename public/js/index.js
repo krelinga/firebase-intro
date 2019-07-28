@@ -1,9 +1,3 @@
-function googleLogin() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase.auth().signInWithPopup(provider)
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
     // // The Firebase SDK is initialized and available here!
@@ -38,7 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    document.getElementById('log_in').addEventListener('click', googleLogin)
+    document.getElementById('log_in').addEventListener('click', () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+    })
     document.getElementById('log_out').addEventListener('click', () => {
         firebase.auth().signOut()
     })
